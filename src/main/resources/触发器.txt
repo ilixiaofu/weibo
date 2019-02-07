@@ -1,0 +1,92 @@
+use sping_cloud_weibo;
+
+DELIMITER $$
+CREATE TRIGGER tri_message_commentsInsert
+	AFTER INSERT ON message_comments
+	FOR EACH ROW
+BEGIN
+	declare current_message_comments_count int;
+	declare message_comments_count int;
+    declare comments_id int;
+    declare message_id int;
+     
+    set comments_id = ( SELECT LAST_INSERT_ID() );
+    
+    set message_id = (
+		select message_comments.mess_id
+		from message_comments
+		where message_comments.id = comments_id );
+        
+	set current_message_comments_count = (
+		select message.comments_count
+        from message
+        where message.id = message_id );
+        
+	update message
+		set message.comments_count = current_message_comments_count + 1
+        where message.id = message_id;
+        
+END $$
+DELIMITER ;
+
+
+
+
+
+use sping_cloud_weibo;
+
+DELIMITER $$
+CREATE TRIGGER tri_message_forwardingInsert
+	AFTER INSERT ON message_forwarding
+	FOR EACH ROW
+BEGIN
+	declare current_message_forwarding_count int;
+    declare message_forwarding_id int;
+    declare message_id int;
+     
+    set message_forwarding_id = ( SELECT LAST_INSERT_ID() );
+    
+    set message_id = (
+		select message_forwarding.msg_id
+		from message_forwarding
+		where message_forwarding.id = message_forwarding_id );
+        
+	set current_message_forwarding_count = (
+		select message.forwarding_count
+        from message
+        where message.id = message_id );
+        
+	update message
+		set message.forwarding_count = current_message_forwarding_count + 1
+        where message.id = message_id;
+        
+	commit;
+        
+END $$
+DELIMITER ;
+
+
+use sping_cloud_weibo;
+
+DELIMITER $$
+CREATE TRIGGER tri_message_commentsInsert
+	AFTER INSERT ON message_comments
+	FOR EACH ROW
+BEGIN
+     update message
+		set message.comments_count = message.comments_count + 1
+		where message.id = new.mess_id;
+END $$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE TRIGGER tri_insert_message_like
+	AFTER INSERT ON message_like
+	FOR EACH ROW
+BEGIN
+     update message
+		set message.likes_count = message.likes_count + 1
+		where message.id = new.msg_id;
+END $$
+DELIMITER ;

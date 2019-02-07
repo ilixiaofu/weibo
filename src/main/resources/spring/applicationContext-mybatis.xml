@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- 开启注解扫描 -->
+    <context:component-scan base-package="com.springcloud.weibo.service"></context:component-scan>
+    <!-- 开启注解扫描 -->
+
+    <!-- 引入JDBC属性文件 start -->
+    <context:property-placeholder location="classpath:mybatis/db.properties"/>
+    <!-- 引入JDBC属性文件 end -->
+
+    <!-- 配置数据源 start -->
+    <bean id="dataSources"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+        <!-- <property name="maxActive" value="5"></property> <property name="maxIdle"
+            value="5"></property> -->
+    </bean>
+    <!-- 配置数据源 end -->
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 注入数据源 -->
+        <property name="dataSource" ref="dataSources"></property>
+        <!-- 加载mybatis配置文件 -->
+        <property name="mapperLocations" value="classpath:com/springcloud/weibo/mapper/*Mapper.xml"></property>
+
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.springcloud.weibo.mapper"></property>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+
+    <!-- 配置声明式事务 start -->
+    <!-- 事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- 注入数据源 -->
+        <property name="dataSource" ref="dataSources"></property>
+    </bean>
+    <!-- 配置声明式事务 end -->
+
+    <!-- 注解方式管理事务start -->
+    <!-- 开启注解事务 -->
+    <tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager"/>
+    <!-- 开启注解事务 -->
+    <!-- 注解方式管理事务end -->
+
+    <!-- 配置事务的传播方式 start -->
+    <!-- <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add"   	propagation="REQUIRED"/>
+            <tx:method name="delete"   	propagation="REQUIRED"/>
+            <tx:method name="update"   	propagation="REQUIRED"/>
+            <tx:method name="find*"   	read-only="true"/>
+            <tx:method name="get*"   	read-only="true"/>
+            <tx:method name="list*"     read-only="true"/>
+            <tx:method name="*"     	rollback-for="java.lang.Exception"/>
+        </tx:attributes>
+    </tx:advice> -->
+    <!-- 配置事务传播方式 end -->
+
+    <!-- 配置事务增强点 start-->
+    <!-- <aop:config>
+        <aop:pointcut expression="execution(* service.*ServiceImpl.*(..))" id="pointcut"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
+    </aop:config> -->
+    <!-- 配置事务增强点 end-->
+
+</beans>

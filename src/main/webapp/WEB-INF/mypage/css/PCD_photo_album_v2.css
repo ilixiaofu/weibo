@@ -1,0 +1,197 @@
+.PCD_photo_album_v2 {
+    position: relative;
+    min-height: 470px;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+.PCD_photo_album_v2 .photo_album_null {
+    text-align: center;
+    padding-top: 96px;
+}
+
+.PCD_photo_album_v2 .photo_album_btn {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.PCD_photo_album_v2 .W_layer_pop .W_layer_arrow .W_arrow_bor_t {
+    left: 210px;
+}
+
+.PCD_photo_album_v2 .photo_album_list {
+    padding: 18px 18px;
+}
+
+.PCD_photo_album_v2 .photo_module {
+    position: relative;
+    float: left;
+    width: 217px;
+    height: auto;
+    margin: 2px 2px;
+    background-color: #f2f2f5;
+}
+
+.PCD_photo_album_v2 .mid_line {
+    margin: 0 20px;
+    border-bottom: 1px solid #f2f2f5;
+}
+
+.PCD_photo_album_v2 .photo_module:after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    left: -1px;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    border: 1px solid rgba(0, 0, 0, .05);
+}
+
+.PCD_photo_album_v2 .photo_cont {
+    position: relative;
+    width: 217px;
+    height: 217px;
+    border-radius: 5px;
+    background-color: #fff;
+    z-index: 2;
+    cursor: pointer;
+    overflow: hidden;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.PCD_photo_album_v2 .photo_pict {
+    min-width: 217px;
+    height: 217px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: perspective(1px) translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: perspective(1px) translate(-50%, -50%);
+}
+
+@media \0screen\,screen\9 {
+    .PCD_photo_album_v2 .photo_pict {
+        position: static;
+        top: auto;
+        left: auto;
+    }
+}
+
+.PCD_photo_album_v2 .photo_pict_h {
+    min-width: auto;
+    height: auto;
+    width: 217px;
+    min-height: 217px;
+}
+
+.PCD_photo_album_v2 .icon_playvideo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -27px;
+    margin-top: -27px;
+    z-index: 2;
+}
+
+.PCD_photo_album_v2 .video_time {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    padding: 2px 5px;
+    border-radius: 5px;
+    background: #2c2c2c;
+    background: rgba(74, 74, 74, 0.6);
+    overflow: hidden;
+    color: #fff;
+}
+
+.PCD_photo_album_v2 .W_icon_tag_v2 {
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 16px;
+    margin: 0;
+    padding: 0 3px;
+    background: #eb7350;
+    color: #fff;
+    line-height: 18px;
+}
+
+.PCD_photo_album_v2 .txt_cont {
+    position: relative;
+    margin: 10px 10px;
+    line-height: 18px;
+    height: 36px;
+    word-wrap: break-word;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.PCD_photo_album_v2 .photo_face {
+    padding-bottom: 10px;
+}
+
+.PCD_photo_album_v2 .photo_cont .approval_box {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 2;
+    visibility: hidden;
+}
+
+.PCD_photo_album_v2 .photo_cont .bot_cover {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 217px;
+    height: 30px;
+    background: #2c2c2c;
+    background: rgba(74, 74, 74, 0.6);
+    text-align: left;
+    visibility: hidden;
+}
+
+.PCD_photo_album_v2 .photo_cont .bot_icon {
+    display: inline-block;
+    line-height: 30px;
+}
+
+.PCD_photo_album_v2 .photo_cont .bot_icon_f {
+    display: inline-block;
+    line-height: 30px;
+    vertical-align: middle;
+    padding: 0 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.PCD_photo_album_v2 .photo_cont .bot_icon_f:hover {
+    color: #eb7350;
+}
+
+.PCD_photo_album_v2 .photo_cont .bot_icon_f em {
+    padding-right: 5px;
+    font-size: 14px;
+}
+
+.PCD_photo_album_v2 .photo_cont:hover .approval_box {
+    visibility: visible;
+}
+
+.PCD_photo_album_v2 .photo_cont:hover .bot_cover {
+    visibility: visible;
+}
+
+.WB_tab_b .PCD_photo_album_v2_btn a {
+    display: inline-block;
+    padding: 7px 20px 7px 0px;
+}
+
+#js_style_css_module_pagecard_PCD_photo_album_v2 {
+    height: 42px;
+}

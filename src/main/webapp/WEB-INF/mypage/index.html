@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link href="css/frame.css" rel="stylesheet" type="text/css"/>
+    <link href="css/skin.css" rel="stylesheet" type="text/css"/>
+    <link href="css/personal.css" rel="stylesheet" type="text/css"/>
+    <link href="css/PCD_profile_home_A.css" rel="stylesheet" type="text/css"/>
+    <link href="css/comb_PCD_photoflow.css" rel="stylesheet" type="text/css"/>
+    <link href="css/comb_webim.css" rel="stylesheet" type="text/css"/>
+    <link href="css/PCD_mplayer.css" rel="stylesheet" type="text/css"/>
+    <link href="css/PCD_photo_album_v2.css" rel="stylesheet" type="text/css"/>
+    <link href="css/extra.css" rel="stylesheet" type="text/css"/>
+    <link rel="icon" href="img/index.ico" type="image/x-icon"/>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="js/mypage.js"></script>
+    <title>个人主页</title>
+    <style type="text/css" rel="stylesheet">
+        #album {
+            display: none;
+        }
+
+        #uploadImage : hover {
+            color: #eb7350;
+        }
+    </style>
+</head>
+
+<body class="FRAME_page B_page S_page" style="">
+<div class="headerBox">
+    <div class="header clearfix">
+        <div class="logo fl">
+            <a href="#">
+                <img src="img/logo.png" alt=""/>
+            </a>
+        </div>
+        <div class="searchBox fl">
+            <input type="text" class="search" value="" placeholder="大家正在搜:孙菲菲">
+            <a href="#" class="searchImg">
+                <img src="img/search.jpg" alt=""/>
+            </a>
+            <div class="search_List">
+                <p class="search_more">
+                    <a href="#">查看完整搜索榜》</a>
+                </p>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <em>1</em>美不美看大腿
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="navBox fl">
+            <ul>
+                <li class="home">
+                    <a href="#">首页</a>
+                </li>
+                <li class="find">
+                    <a href="#">发现</a>
+                </li>
+                <li class="user">
+                    <a href="#"></a>
+                </li>
+            </ul>
+        </div>
+        <div class="settings fl clearfix">
+            <div class="set fl">
+                <img src="img/mess_icon.png" alt=""/>
+            </div>
+            <div class="set fl">
+                <img src="img/set_icon.jpg" alt=""/>
+                <ul>
+                    <li>
+                        <a href="#">账号设置</a>
+                    </li>
+                    <li>
+                        <a id="myPage" href="#">个人中心</a>
+                    </li>
+                    <li>
+                        <a href="#">会员中心</a>
+                    </li>
+                    <li>
+                        <a href="#">V认证</a>
+                    </li>
+                    <li>
+                        <a id="updatePwd" href="#">账号安全</a>
+                    </li>
+                    <li>
+                        <a href="#">隐私设置</a>
+                    </li>
+                    <li>
+                        <a href="#">屏蔽设置</a>
+                    </li>
+                    <li>
+                        <a href="#">消息设置</a>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li>
+                        <a id="logout" href="#">退出</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="set fl">
+                <img src="img/send_weibo.jpg" alt=""/>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="position: fixed; z-index: -1; width: 100%; height: 100%;">
+    <img src="img/body_bg.jpg" width="100%" height="100%"/>
+</div>
+<div class="WB_miniblog">
+    <div class="WB_miniblog_fb">
+        <div class="WB_main clearfix" id="plc_frame">
+            <div class="WB_frame">
+                <div class="WB_frame_a">
+                    <div id="Pl_Official_Headerv6__1">
+                        <div class="PCD_header">
+                            <div class="pf_wrap" layout-shell="false" node-type="cover_wrap">
+                                <div class="cover_wrap banner_transition" node-type="cover"
+                                     style="background-image: url(img/041.jpg)" cover-type="1">
+                                </div>
+                                <div class="shadow  S_shadow" layout-shell="false">
+                                    <div class="pf_photo" node-type="photo">
+                                        <p class="photo_wrap">
+                                            <a href="javascript:void(0);" action-type="setPhoto" title="更换头像"
+                                               suda-uatrack="key=profile_head&amp;value=head_host">
+                                                <!-- <img src="img/head.jpg" alt="MasterWayne-" class="photo"> -->
+
+                                                <!-- ======================上传头像 ======================= -->
+                                                <input type="file" id="head-image" name="file" class="file-btn"
+                                                       accept="image/*">
+                                                <img src="img/head.jpg" alt="MasterWayne-" class="photo">
+                                                </input>
+                                            </a>
+
+                                        </p>
+                                    </div>
+
+                                    <div class="pf_username">
+                                        <h1 class="username"></h1>
+                                    </div>
+                                </div>
+                                <div class="upcover">
+                                    <a href="javascript:void(0);" class="W_btn_b " node-type="custom"
+                                       style="display: none;">
+                                        <em class="W_ficon ficon_upload S_ficon">É</em>上传封面图
+                                    </a>
+                                </div>
+
+                                <div style="display: none;" class="pf_use_num" node-type="use_num">
+                                    超过
+                                    <span class="W_Tahoma W_fb">1000</span>万人正在使用
+                                </div>
+                                <a href="javascript:void(0)"
+                                   suda-data="key=tblog_mode_cover&amp;value=profile_home_tear"
+                                   action-data="is_guilderBubble="
+                                   node-type="set_skin" title="模板设置"
+                                   class="W_icon icon_setskin UI_top_hidden W_fixed_top" ontouchstart=""></a>
+                            </div>
+                        </div>
+                        <div node-type="moreList" class="layer_menu_list_b"
+                             style="position: absolute; top: 332px; left: 900px; z-index: 999; display: none;">
+                            <div class="list_wrap">
+                                <div class="list_content W_f14">
+                                    <ul class="list_ul">
+                                        <li class="item">
+                                            <a suda-data="key=tblog_otherprofile_v5&amp;value=whisper"
+                                               href="javascript:void(0);" action-type="addQuietFollow"
+                                               action-data="fuid=3554548337&amp;fname=MasterWayne-&amp;action=add"
+                                               class="tlink"
+                                               suda-uatrack="key=tblog_profile_v6&amp;value=silently_concern">悄悄关注</a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="javascript:void(0);" action-type="widget_publish" class="tlink"
+                                               suda-uatrack="key=tblog_profile_v6&amp;value=suggest_to_friends">分享到微博</a>
+                                        </li>
+                                        <li class="item">
+                                            <a suda-data="key=tblog_otherprofile_v5&amp;value=join_blacklist"
+                                               href="javascript:void(0);" action-type="block" class="tlink"
+                                               suda-uatrack="key=tblog_profile_v6&amp;value=in_black_list">加入黑名单</a>
+                                        </li>
+                                        <li class="item">
+                                            <a suda-data="key=tblog_otherprofile_v5&amp;value=report"
+                                               href="javascript:void(0);" onclick="javascript:void(0);" class="tlink"
+                                               suda-uatrack="key=tblog_profile_v6&amp;value=report">举报他</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="PCD_user_b S_bg1" node-type="follow_recommend_box" style="display: none"></div>
+
+                    </div>
+                    <div id="Pl_Official_Nav__2" name="place" anchor="-50">
+                        <div class="PCD_tab S_bg2">
+                            <div class="tab_wrap" style="width: 60%">
+                                <table class="tb_tab" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                    <tr>
+                                        <td class="current">
+                                            <a bpfilter="page" href="javascript:void(0);" onclick="changeDisplay(this)"
+                                               data-menu="mainPage" node-type="nav_link" class="tab_link">
+                                                <span class="S_txt1 t_link">我的主页</span>
+                                                <span class="ani_border"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a bpfilter="page" href="javascript:void(0);" onclick="changeDisplay(this)"
+                                               data-menu="album" node-type="nav_link"
+                                               suda-uatrack="key=tblog_profile_new&amp;value=tab_photos"
+                                               class="tab_link">
+                                                <span class="S_txt1 t_link">我的相册</span>
+                                                <span class="ani_border"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a bpfilter="page" href="javascript:void(0);" node-type="nav_link"
+                                               suda-uatrack="key=tblog_profile_new&amp;value=tab_manage"
+                                               class="tab_link">
+                                                <span class="S_txt1 t_link">管理中心</span>
+                                                <span class="ani_border"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 我的主页 -->
+
+                <div class="plc_main" id="mainPage">
+                    <div class="WB_frame_b" fixed-box="true" fixed-random="false">
+                        <div id="Pl_Core_T8CustomTriColumn__3" anchor="-50">
+                            <div class="WB_cardwrap S_bg2">
+                                <div class="PCD_counter">
+                                    <div class="WB_innerwrap">
+                                        <table class="tb_counter" cellspacing="0" cellpadding="0">
+                                            <tbody>
+                                            <tr>
+                                                <td class="S_line1">
+                                                    <a bpfilter="page_frame" class="t_link S_txt1" href="#">
+                                                        <strong class="W_f18">57</strong>
+                                                        <span class="S_txt2">关注</span>
+                                                    </a>
+                                                </td>
+                                                <td class="S_line1">
+                                                    <a bpfilter="page_frame" class="t_link S_txt1" href="#">
+                                                        <strong class="W_f18">68</strong>
+                                                        <span class="S_txt2">粉丝</span>
+                                                    </a>
+                                                </td>
+                                                <td class="S_line1">
+                                                    <a bpfilter="page_frame" class="t_link S_txt1" href="#">
+                                                        <strong class="W_f18">1065</strong>
+                                                        <span class="S_txt2">微博</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Pl_Third_Inline__4" anchor="-50"></div>
+                        <div id="Pl_Third_Inline__5" anchor="-50"></div>
+                        <div id="Pl_Core_UserInfo__6" anchor="-50">
+                            <div style="visibility: hidden;"></div>
+                            <div style="z-index: 10; transform: translateZ(0px); position: relative; transition: margin-top 0.3s ease 0s; will-change: margin-top, top; width: 300px;"
+                                 class=" ">
+                                <div class="WB_cardwrap S_bg2" fixed-inbox="true" node-type="sigleProfileUsrinfo"
+                                     fixed-mutex="false" fixed-id="7">
+                                    <!-- v6 card 通用标题 -->
+                                    <div class="PCD_person_info">
+                                        <div class="verify_area W_tog_hover S_line2">
+                                            <p class="verify clearfix">
+													<span class="icon_bed W_fl">
+														<a suda-data="key=pc_apply_entry&amp;value=profile_apply_certification"
+                                                           class="apply_link W_fl S_txt1" href="#">申请认证</a>
+													</span>
+                                                <span class="icon_group S_line1 W_fl">
+														<a class="W_icon_level icon_level_c4" title="微博等级21 升级有好礼"
+                                                           href="#" target="_black">
+															<span>Lv.21</span>
+														</a>&nbsp;
+													</span>
+                                            </p>
+                                            <p class="info">
+                                                <span></span>
+                                            </p>
+                                        </div>
+
+                                        <div class="WB_innerwrap">
+                                            <div class="m_wrap">
+                                                <div class="bars_box">
+                                                    <p class="bar_title">
+                                                        个人资料完成度
+                                                        <span class="num">90%</span>
+                                                    </p>
+                                                    <div class="bar_box S_bg1">
+                                                        <div class="bar" style="width: 90%"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- =================================================== -->
+                                        <a class="WB_cardmore S_txt1 S_line1 clearfix" href="#" bpfilter="page_frame"
+                                           ontouchstart="">
+												<span class="more_txt">编辑个人资料&nbsp;
+													<em class="W_ficon ficon_arrow_right S_ficon"></em>
+												</span>
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <div style="height: 1px; margin-top: -1px; visibility: hidden;"></div>
+                            </div>
+                        </div>
+                        <div id="Pl_Third_Inline__12" anchor="-50">
+                            <div class="WB_cardwrap S_bg2" action-type="login">
+                                <!--个人图片-->
+                                <div class="PCD_photolist">
+                                    <div class="WB_cardtitle_b S_line2">
+                                        <h4 class="obj_name">
+												<span class="main_title W_fb W_f14">
+													<a href="photos.html" target="_blank" class="S_txt1">相册</a>
+												</span>
+                                        </h4>
+                                    </div>
+                                    <div class="WB_innerwrap">
+                                        <div class="m_wrap">
+                                            <ul class="clearfix">
+                                                <li class=" big_pic">
+                                                    <a href="#"
+                                                       suda-uatrack="key=tblog_eightpic_new&amp;value=pic_click"
+                                                       target="_blank">
+                                                        <img src="#">
+                                                    </a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="#"
+                                                       suda-uatrack="key=tblog_eightpic_new&amp;value=pic_click"
+                                                       target="_blank">
+                                                        <img src="#">
+                                                    </a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="#"
+                                                       suda-uatrack="key=tblog_eightpic_new&amp;value=pic_click"
+                                                       target="_blank">
+                                                        <img src="#">
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="#" class="WB_cardmore S_txt1 S_line1 clearfix">
+											<span class="more_txt">查看更多
+												<em class="W_ficon ficon_arrow_right S_ficon"></em>
+											</span>
+                                    </a>
+                                </div>
+                                <!--/个人图片-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="WB_frame_c" fixed-box="true">
+                        <div id="Pl_Official_ProfileFeedNav__19" anchor="-50">
+                            <div style="visibility: hidden;"></div>
+                            <div style="z-index: 10; transform: translateZ(0px); position: relative; transition: margin-top 0.3s ease 0s; will-change: margin-top, top; width: 600px;"
+                                 class=" ">
+                                <div class="WB_tab_a" node-type="feed_nav" fixed-item="true"
+                                     style="position: relative; box-shadow: none;" fixed-id="10">
+                                    <div class="tab_box tab_box_c S_bg1 clearfix">
+                                        <ul class="tab W_fl">
+                                            <li class="tab_li tab_li_first curr S_bg2" node-type="tab_all"
+                                                action-type="search_type" action-data="profile_ftype=1&amp;is_all=1">
+                                                <a href="javascript:void(0);"
+                                                   suda-data="key=tblog_profile_new&amp;value=weibo_all"
+                                                   class="S_txt1 S_line1">全部</a>
+                                                <span class="ani_border"></span>
+                                            </li>
+                                            <li class="tab_li" node-type="tab_hot" action-type="search_type"
+                                                action-data="profile_ftype=1&amp;is_hot=1" style="display: none">
+                                                <a href="javascript:void(0);"
+                                                   suda-uatrack="key=tblog_profile_v6&amp;value=topnav" class="S_txt1">
+                                                    <em class="W_ficon ficon_hot S_ficon">ì</em>热门
+                                                </a>
+                                                <span class="ani_border"></span>
+                                            </li>
+                                            <li class="tab_li" node-type="tab_other" action-type="search_type">
+                                                <a href="javascript:void(0);" class="S_txt1">
+                                                    <span class="txt" node-type="menutext">更多</span>
+                                                    <i class="W_ficon ficon_arrow_down W_f16 S_ficon"
+                                                       node-type="morebtn"></i>
+                                                </a>
+                                                <span class="ani_border"></span>
+                                            </li>
+                                        </ul>
+                                        <div class="fr_box W_fr" node-type="search_adv_rightbar">
+                                            <div class="search_box W_fr" node-type="input_search" style="">
+													<span class="WB_search_s">
+														<form method="get" action="" node-type="singleForm">
+															<input node-type="keyword" name="key_word" class="W_input"
+                                                                   placeholder="搜索我的微博" notice="搜索我的微博" type="text">
+														</form>
+													</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="height: 1px; margin-top: -1px; visibility: hidden;"></div>
+                            </div>
+                            <div style="display: none;" node-type="feed_tag_list"
+                                 class="WB_cardwrap S_bg2 feed_pop_tag"></div>
+
+                        </div>
+                        <div class="weiboList">
+                            <!--微博示例-->
+                            <!--微博示例-->
+                        </div>
+
+                        <div class="loading">
+                            <div class="loadingText">
+                                <p>正在加载中，请稍侯...</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- 相册 -->
+                <div class="plc_main" id="album">
+                    <div class="WB_frame_a" fixed-box="true">
+                        <div id="Pl_Official_AlbumNav__110" anchor="-50">
+                            <!--相册顶导-->
+                            <div style="visibility: hidden;"></div>
+                            <div style="z-index: 10; transform: translateZ(0px); position: relative; transition: margin-top 0.3s ease 0s; will-change: margin-top, top; width: 920px;"
+                                 class=" ">
+                                <div class="WB_tab_b S_bg2" fixed-item="true" fixed-id="3">
+                                    <div class="opt_choose">
+                                        <div class="inner S_line2 clearfix">
+                                            <!--相册顶导列表-->
+                                            <ul class="tab_ul W_fl">
+                                                <!-- 照片墙 -->
+                                                <li class="tab_li">
+                                                    <a bpfilter="page" href="#" class="tab_item  S_line1 tab_cur"
+                                                       suda-uatrack="key=v6_profilealbum&amp;value=tab_photo">
+                                                        <span class="W_f14 S_txt1">照片墙</span>
+                                                        <span class="ani_border S_line1"></span>
+                                                    </a>
+                                                </li>
+                                                <!-- 视频 -->
+                                                <li class="tab_li">
+                                                    <a bpfilter="page" href="#" class="tab_item  S_line1 "
+                                                       suda-uatrack="key=v6_profilealbum&amp;value=tab_video">
+                                                        <span class="W_f14 S_txt1">视频</span>
+                                                    </a>
+                                                </li>
+                                                <!-- 只有橙V才显示面孔 -->
+                                                <!-- 判断是谁赞过的 -->
+                                                <li class="tab_li">
+                                                    <a bpfilter="page" href="#" class="tab_item  S_line1 "
+                                                       suda-uatrack="key=v6_profilealbum&amp;value=tab_liked">
+                                                        <span class="W_f14 S_txt1">我赞过的</span>
+                                                    </a>
+                                                </li>
+                                                <!-- 相册专辑 -->
+                                                <li class="tab_li">
+                                                    <a href="#" target="_blank" class="tab_item  S_line1"
+                                                       suda-uatrack="key=v6_profilealbum&amp;value=tab_album">
+                                                        <span class="W_f14 S_txt1">相册专辑</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+
+                                            <!-- 主人态显示 -->
+                                            <div class="PCD_photo_album_v2_btn W_fr">
+                                                <a class="S_txt1" href="javascript:void(0);">
+                                                    <!-- =============上传图片 ========================================-->
+                                                    <input type="file" id="images" name="file" class="file-btn"
+                                                           multiple="multiple" accept="image/*">
+                                                    <span>选择照片</span>
+                                                    </input>
+                                                </a>
+                                            </div>
+
+                                            <a id="uploadImage"
+                                               style="color: black; float: right; margin-top: 8px; margin-right: 10px; "
+                                               href="javascript:uploadImage(this)">上传照片</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="height: 1px; margin-top: -1px; visibility: hidden;"></div>
+                            </div>
+                        </div>
+
+                        <div id="Pl_Official_AlbumLists__111" anchor="-50">
+                            <!-- 相册列表   -->
+                            <!-- 判断标签类型 -->
+                            <!-- 如果是wbphoto照片墙 -->
+                            <div class="PCD_photo_album_v2" node-type="list">
+                                <!-- 如果没有照片 -->
+                                <!-- 对组列表进行循环 -->
+                                <ul class="photo_album_list clearfix" group_id="2017年04月">
+                                    <p class="S_txt2 photo_face">2017年04月</p>
+                                    <!-- 判断是否加分隔线的依据-->
+                                    <!-- 对每组的内容列表进行循环 -->
+                                    <!-- 如果是图片 -->
+                                </ul>
+                                <!-- 根据组成员数决定是否加分隔线 -->
+                                <p class="mid_line"></p>
+                                <!-- 懒加载的加载条，当不出现加载条时，懒加载停止 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

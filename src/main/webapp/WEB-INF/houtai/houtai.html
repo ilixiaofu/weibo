@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>新浪微博</title>
+    <link rel="stylesheet" href="css/houtai.css" media="screen" title="no title" charset="utf-8">
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/admin.js"></script>
+
+</head>
+
+<body>
+<!-- 新浪微博 -->
+<div class="headerBox">
+    <div class="header clearfix">
+        <div class="logo fl">
+            <a href="#">
+                <img src="img/logo.png" alt=""/>
+            </a>
+        </div>
+        <div class="searchBox fl">
+            <input type="text" class="search" value="" placeholder="搜索">
+            <a href="#" class="searchImg">
+                <img src="img/search.png" alt=""/>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="main clearfix">
+    <div class="mainLeft fl">
+        <div class="leftNav">
+            <div class="leftNav_t">
+                <ul>
+                    <li>
+                        <a href="#">首页</a>
+                    </li>
+                    <li>
+                        <a href="javascript:changedisplaydata(1);" id="li-one">账号管理</a>
+                    </li>
+                    <li>
+                        <a href="javascript:changedisplaydata(2);" id="li-two">内容管理</a>
+                    </li>
+                    <li>
+                        <a href="javascript:changedisplaydata(3);" id="li-three">图片管理</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mainRight fl clearfix">
+        <div class="mainRight_l fl">
+            <!--账号管理-->
+            <div class="weiboList" style="display:block" id="content1">
+            </div>
+            <!--/账号管理-->
+
+            <!--内容管理-->
+            <div class="weiboList" style="display:none" id="content2">
+                <!--微博示例-->
+                <!--微博示例-->
+            </div>
+            <!--/内容管理-->
+
+            <div class="weiboList" style="display:none" id="content3">
+                <ul class="photo_list">
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    $(document).ready(function () {
+        var temp = "none";
+        $("#li-one").click(function () {
+            openMatter(1);
+        });
+        $("#li-two").click(function () {
+            openMatter(2);
+        });
+        $("#li-three").click(function () {
+            openMatter(3);
+        });
+
+        function openMatter(obj) {
+            for (var i = 1; i < 4; i++) {
+                if (i == obj) {
+                    temp = "block";
+                } else {
+                    temp = "none";
+                }
+                document.getElementById("content" + i).style.display = temp;
+
+            }
+        }
+    });
+</script>
+
+</html>

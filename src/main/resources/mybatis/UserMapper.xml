@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springcloud.weibo.mapper.UserMapper">
+
+    <resultMap id="BaseUserResultMap"
+               type="com.springcloud.weibo.pojo.User">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="uid" jdbcType="VARCHAR" property="uid"/>
+        <result column="_password" jdbcType="VARCHAR"
+                property="password"/>
+        <result column="register_date" jdbcType="TIMESTAMP"
+                property="registerDate"/>
+    </resultMap>
+
+    <resultMap id="UserDetailInfoResultMap"
+               type="com.springcloud.weibo.pojo.UserDetailInfo">
+        <id column="uid" jdbcType="INTEGER" property="uid"/>
+        <result column="nick_name" jdbcType="VARCHAR"
+                property="nickName"/>
+        <result column="really_name" jdbcType="VARCHAR"
+                property="reallyName"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="birthday" jdbcType="DATE" property="birthday"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="QQ" jdbcType="VARCHAR" property="qq"/>
+        <result column="tel" jdbcType="VARCHAR" property="tel"/>
+        <result column="blog_id" jdbcType="VARCHAR" property="blogId"/>
+        <result column="signature" jdbcType="VARCHAR"
+                property="signature"/>
+        <result column="introduce" jdbcType="VARCHAR"
+                property="introduce"/>
+        <result column="job" jdbcType="VARCHAR" property="job"/>
+        <result column="school" jdbcType="VARCHAR" property="school"/>
+        <result column="hobby" jdbcType="VARCHAR" property="hobby"/>
+        <result column="local_id" jdbcType="INTEGER" property="localId"/>
+    </resultMap>
+
+    <resultMap id="OneToOneUserResultMap"
+               type="com.springcloud.weibo.pojo.User" extends="BaseUserResultMap">
+        <association property="userDetailInfo"
+                     javaType="com.springcloud.weibo.pojo.UserDetailInfo"
+                     resultMap="UserDetailInfoResultMap">
+        </association>
+    </resultMap>
+
+    <sql id="BaseUser_Column_List">
+        id, uid, _password, register_date
+    </sql>
+
+    <sql id="UserDetailInfo_Column_List">
+        uid, nick_name, really_name, sex, birthday, email, QQ, tel,
+        blog_id,
+        signature, introduce,
+        job, school, hobby, local_id
+    </sql>
+
+    <insert id="insertBaseUser"
+            parameterType="com.springcloud.weibo.pojo.User"
+            useGeneratedKeys="true" keyProperty="id">
+        <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            select last_insert_rowid() as id SELECT LAST_INSERT_ID() as id </selectKey> -->
+        insert into base_user (uid, _password)
+        values (#{uid,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertUserDetailInfoId"
+            parameterType="java.lang.Integer">
+        insert into user_detail_info (uid)
+        values
+        (#{id,jdbcType=INTEGER})
+    </insert>
+
+    <select id="selectBaseUser" parameterType="java.util.Map"
+            resultMap="BaseUserResultMap">
+        select
+        <include refid="BaseUser_Column_List"/>
+        from base_user
+        where uid = #{uid,jdbcType=VARCHAR}
+        and _password =
+        #{password,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectUserDetailInfoByUid"
+            parameterType="java.lang.String" resultMap="OneToOneUserResultMap">
+        select base_user.*,
+        user_detail_info.*
+        from base_user,
+        user_detail_info
+        where base_user.id =
+        user_detail_info.uid
+        and base_user.uid = #{uid,jdbcType=VARCHAR}
+    </select>
+
+    <update id="updateBaseUserByPrimaryKeySelective"
+            parameterType="com.springcloud.weibo.pojo.User">
+        update base_user
+        <set>
+            <if test="password != null">
+                _password = #{password,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            where id = #{id,jdbcType=INTEGER}
+        </if>
+    </update>
+
+    <update id="updateUserDetailInfoByPrimaryKeySelective"
+            parameterType="com.springcloud.weibo.pojo.User">
+        update user_detail_info
+        <set>
+            <if test="userDetailInfo.nickName != null">
+                nick_name = #{userDetailInfo.nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="userDetailInfo.reallyName != null">
+                really_name =
+                #{userDetailInfo.reallyName,jdbcType=VARCHAR},
+            </if>
+            <if test="userDetailInfo.sex != null">
+                sex = #{userDetailInfo.sex,jdbcType=VARCHAR},
+            </if>
+            <if test="userDetailInfo.birthday != null">
+                birthday = #{userDetailInfo.birthday,jdbcType=DATE},
+            </if>
+            <if test="userDetailInfo.email != null">
+                email = #{userDetailInfo.email,jdbcType=VARCHAR},
+            </if>
+            <if test="userDetailInfo.qq != null">
+                QQ = #{userDetailInfo.qq,jdbcType=VARCHAR},
+            </if>
+            <if test="userDetailInfo.tel != null">
+                tel = #{userDetailInfo.tel,jdbcType=VARCHAR},
+            </if>
+            <if test="userDetailInfo.blogId != null">
+                blog_id = #{userDetailInfo.blogId,jdbcType=VARCHAR},
+            </if>
+            <if test="userDetailInfo.signature != null">
+                signature = #{userDetailInfo.signature,jdbcType=VARCHAR},
+            </if>
+            <if test="userDetailInfo.introduce != null">
+                introduce = #{userDetailInfo.introduce,jdbcType=VARCHAR},
+            </if>
+            <if test="userDetailInfo.job != null">
+                job = #{userDetailInfo.job,jdbcType=VARCHAR},
+            </if>
+            <if test="userDetailInfo.school != null">
+                school = #{userDetailInfo.school,jdbcType=VARCHAR},
+            </if>
+            <if test="userDetailInfo.hobby != null">
+                hobby = #{userDetailInfo.hobby,jdbcType=VARCHAR},
+            </if>
+            <if test="userDetailInfo.localId != null">
+                local_id = #{userDetailInfo.localId,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            where user_detail_info.uid = #{id,jdbcType=INTEGER}
+        </if>
+    </update>
+</mapper>
